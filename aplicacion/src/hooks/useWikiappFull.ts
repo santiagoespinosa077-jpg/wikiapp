@@ -4,7 +4,7 @@ import{Search} from '../interfaces/wikiResponse';
 
 interface UseWikiFull{
 	isLoading: boolean;
-	wikiDetail: Entity;
+	wikiDetail: Search;
 }
 
 export const useWikiFull = (id: string): UseWikiFull => {

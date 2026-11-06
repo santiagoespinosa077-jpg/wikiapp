@@ -53,3 +53,26 @@ export type Repository = "wikidata";
 export interface Searchinfo {
     search: string;
 }
+
+export interface WikiEntityResponse {
+  entities: Record<string, Entity>;
+}
+
+export interface Entity {
+  id: string;
+  labels: Record<string, TextValue>;
+  descriptions: Record<string, TextValue>;
+  claims: Record<string, Claim[]>;
+}
+
+export interface TextValue {
+  language: string;
+  value: string;
+}
+
+export interface Claim {
+  mainsnak: {
+    property: string;
+    datavalue?: { type: string; value: any };
+  };
+}
