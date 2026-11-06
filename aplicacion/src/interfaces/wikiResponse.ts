@@ -4,6 +4,13 @@ export interface Wikiapi {
     "search-continue": number;
     success:           number;
 }
+export interface NewWikiList{
+    id: string;
+    label: string;
+    description: string;
+    url: string;
+
+}
 
 export interface Search {
     id:           string;
