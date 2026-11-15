@@ -5,11 +5,11 @@ export interface Wikiapi {
     success:           number;
 }
 export interface NewWikiList{
-    id: string;
+    id: string|number;
     label: string;
     description: string;
     url: string;
-
+    image?: string;
 }
 
 export interface Search {
