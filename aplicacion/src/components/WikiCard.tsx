@@ -4,6 +4,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { NewWikiList } from "../interfaces/wikiResponse";
 import { WikiParams } from "../navigator/WikiNavigation";
 import { useState } from "react";
+import { colors } from "../theme/appTheme";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
     wiki: NewWikiList;
@@ -15,6 +17,7 @@ export const WikiCard = ({ wiki }: Props) => {
 
     return (
         <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => navigation.navigate("WikiDetail", { NewWikiList: wiki })}
         >
             <View style={styles.card}>
