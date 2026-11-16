@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
-import { useWikiPaginated } from '../hooks/useWikiPaginated';
+import { useWikiSearch } from '../hooks/useWikiSearch';
 import { WikiCard } from '../components/WikiCard';
 
 export const WikiHome = () => {
 
-  const [text, setText] = useState<string>('ciencia');
-  const [search, setSearch] = useState<string>('ciencia');
+  const [text, setText] = useState<string>('programacion');
+  const [search, setSearch] = useState<string>('programacion');
 
-  const { isLoading, simpleWikiList, loadWiki } = useWikiPaginated(search);
+  const { isLoading, simpleWikiList } = useWikiSearch(search);
 
   return (
     <View style={ styles.container }>
@@ -32,8 +32,6 @@ export const WikiHome = () => {
         renderItem={ ({ item }) => <WikiCard wiki={ item } /> }
         showsVerticalScrollIndicator={ false }
         keyboardShouldPersistTaps="handled"
-        onEndReached={ loadWiki }
-        onEndReachedThreshold={ 0.2 }
         ListFooterComponent={(
           isLoading
             ? <ActivityIndicator style={{ height: 120 }} size={ 50 } color="blue" />

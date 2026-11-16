@@ -5,7 +5,7 @@ export interface Wikiapi {
     success:           number;
 }
 export interface NewWikiList{
-    id: string|number;
+    id: string;
     label: string;
     description: string;
     url: string;
@@ -73,6 +73,12 @@ export interface TextValue {
 export interface Claim {
   mainsnak: {
     property: string;
+    datatype?: string;
     datavalue?: { type: string; value: any };
   };
+}
+export interface DetailRow {
+    id: string;
+    label: string;
+    values: string[];
 }

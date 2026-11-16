@@ -1,7 +1,12 @@
-import { WikiHome } from "./src/screens/WikiHome";
-
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { WikiNavigator } from "./src/navigator/WikiNavigation";
 const App = () => {
-  return <WikiHome />;
+  return(
+  <NavigationContainer>
+    <WikiNavigator/>
+  </NavigationContainer>
+  );
 }
 
 export default App;
