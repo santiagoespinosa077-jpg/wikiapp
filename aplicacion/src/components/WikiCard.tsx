@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { NewWikiList } from "../interfaces/wikiResponse";
 
 interface Props {
@@ -8,6 +8,12 @@ interface Props {
 export const WikiCard = ({ wiki }: Props) => {
     return (
         <View style={styles.card}>
+            {wiki.image && (
+                <Image
+                    source={{uri: wiki.image}}
+                    style={styles.image}     
+                />
+            )}
             <Text style={styles.label}>{wiki.label}</Text>
             <Text style={styles.id}>{wiki.id}</Text>
             <Text style={styles.descripcion}>{wiki.description}</Text>
@@ -26,6 +32,12 @@ const styles = StyleSheet.create({
     label:{
         fontSize:18,
         fontWeight:'bold'
+    },
+    image: {
+        width: "100%",
+        height: 160,
+        borderRadius: 8,
+        marginBottom: 8,
     },
     id:{
         color:'gray',
