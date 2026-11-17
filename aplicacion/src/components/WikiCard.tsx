@@ -21,49 +21,84 @@ export const WikiCard = ({ wiki }: Props) => {
             onPress={() => navigation.navigate("WikiDetail", { NewWikiList: wiki })}
         >
             <View style={styles.card}>
-                {wiki.image && !imageFailed && (
-                    <Image
-                        source={{ uri: wiki.image }}
-                        style={styles.image}
-                        onError={() => setImageFailed(true)}
-                    />
-                )}
+                <View style={styles.imageAndText}>
+                    {wiki.image && !imageFailed && (
+                        <Image
+                            source={{ uri: wiki.image }}
+                            style={styles.image}
+                            onError={() => setImageFailed(true)}
+                        />
+                    )}
+                    <View style={styles.textContainer}>
+                        <Text style={styles.label} >{wiki.label}</Text>
+                        <Text style={styles.id}>{wiki.id}</Text>
+                        <Text style={styles.descripcion}>{wiki.description}</Text>
+                    </View>
+                </View>
+                <Text style={styles.wikidataLink}>
+                    <Ionicons name="globe-outline" size={16} color={colors.link} /> {wiki.url}
+                </Text>
 
-                <Text style={styles.label}>{wiki.label}</Text>
-                <Text style={styles.id}>{wiki.id}</Text>
-                <Text style={styles.descripcion}>{wiki.description}</Text>
-                <Text style={styles.url}>{wiki.url}</Text>
+                <Ionicons
+                    name="chevron-forward"
+                    size={20}
+                    color={colors.textid}
+                    style={styles.arrowIcon}
+                />
             </View>
         </TouchableOpacity>
     );
 };
 const styles = StyleSheet.create({
     card: {
-        padding: 12,
-        marginVertical: 6,
-        borderRadius: 10,
-        backgroundColor: '#f2f2f2',
+        padding: 14,
+        marginVertical: 8,
+        marginHorizontal: 4,
+        borderRadius: 20,
+        backgroundColor: colors.card,
+        boxShadow:colors.box
+    },
+    textContainer:{
+        flex:1
     },
     label: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.text,
+        paddingRight: 24,
     },
     image: {
-        width: "100%",
-        height: 160,
-        borderRadius: 8,
+        width: 140,
+        height: 140,
+        borderRadius: 16,
         marginBottom: 8,
     },
+    imageAndText: {
+        flexDirection: 'row',
+        gap: 14,
+    },
     id: {
-        color: 'gray',
-        marginBottom: 4,
+        fontSize:13,
+        fontWeight:'600',
+        color:colors.textid,
+        marginTop:2,
+        marginBottom:6,
     },
     descripcion: {
-        marginBottom: 4,
+        fontSize:14,
+        lineHeight:20,
+        color:colors.text
     },
-    url: {
-        color: 'blue'
-    }
+    wikidataLink:{
+        fontSize:13,
+        color:colors.link,
+        marginTop:12,
+    },
+    arrowIcon: {
+        position: 'absolute',
+        top: 16,
+        right: 14,
+    },
 })
 
 

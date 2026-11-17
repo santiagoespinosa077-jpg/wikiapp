@@ -5,7 +5,8 @@ import { useWikiFull } from "../hooks/useWikiappFull";
 import { WikiInfo } from "../components/WikiInfo";
 import { formatClaimValue } from "../helpers/formatClaimValue";
 import { DetailRow } from "../interfaces/wikiResponse";
-
+import { colors } from "../theme/appTheme";
+import { Ionicons } from "@expo/vector-icons";
 interface Props extends StackScreenProps<WikiParams, "WikiDetail"> { }
 
 export const WikiDetail = ({ navigation, route }: Props) => {
@@ -27,7 +28,9 @@ export const WikiDetail = ({ navigation, route }: Props) => {
         <View style={style.container}>
             <View style={style.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Text style={style.back}>{`← ${id}`}</Text>
+                    <Text style={style.back}>
+                        <Ionicons name="chevron-back" size={16} color={colors.text} /> {id}
+                    </Text>
                 </TouchableOpacity>
 
                 {image && <Image source={{ uri: image }} style={style.image} resizeMode="contain" />}
@@ -48,33 +51,44 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
+        backgroundColor: colors.background
     },
     header: {
-        alignItems: "center",
-        paddingHorizontal: 16,
+        alignItems: "flex-start",
+        paddingHorizontal: 18,
         paddingBottom: 12,
     },
     back: {
         alignSelf: "flex-start",
-        fontSize: 20,
-        fontWeight: "bold",
+        fontSize: 18,
+        color: colors.text,
+        backgroundColor: colors.chip,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius:20,
+        overflow: "hidden",
+        fontWeight: "600",
         marginVertical: 8,
+        
     },
     image: {
         width: "100%",
-        height: 200,
-        borderRadius: 10,
-        marginBottom: 10,
+        height: 220,
+        borderRadius: 20,
+        marginVertical: 12,
     },
     label: {
-        fontSize: 28,
-        fontWeight: "bold",
-        textAlign: "center",
+        fontSize: 30,
+        fontWeight: "800",
+        textAlign: "left",
+        color: colors.text
     },
     description: {
-        fontSize: 16,
-        color: "gray",
-        textAlign: "center",
+        fontSize: 15,
+        lineHeight: 22,
+        textAlign: "left",
+        color: colors.text,
+        marginTop: 4,
     },
     loader: {
         marginTop: 30,

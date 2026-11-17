@@ -1,6 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { DetailRow } from "../interfaces/wikiResponse";
-
+import { colors } from "../theme/appTheme";
 interface Props {
     rows: DetailRow[];
 }
@@ -25,27 +25,32 @@ export const WikiInfo = ({ rows }: Props) => {
 
 const styles = StyleSheet.create({
     list: {
-        paddingHorizontal: 16,
-        paddingBottom: 24,
+        paddingHorizontal: 18,
+        marginBottom: 24,
+        marginHorizontal: 16,
+        borderRadius: 20,
+        backgroundColor: colors.card
     },
     row: {
-        paddingVertical: 10,
+        paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: "#e5e5e5",
+        borderBottomColor: colors.chip
     },
     property: {
-        fontSize: 13,
-        fontWeight: "bold",
-        color: "gray",
+        fontSize: 12,
+        fontWeight: "600",
+        color: colors.link,
         textTransform: "capitalize",
+        marginBottom: 2,
     },
     value: {
-        fontSize: 17,
-        color: "black",
+        fontSize: 16,
+        color: colors.text,
+        lineHeight:24
     },
     empty: {
         textAlign: "center",
-        color: "gray",
+        color: colors.text,
         marginTop: 20,
     },
 });

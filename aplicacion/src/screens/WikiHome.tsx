@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
 import { useWikiSearch } from '../hooks/useWikiSearch';
 import { WikiCard } from '../components/WikiCard';
+import { colors } from '../theme/appTheme';
+import { Ionicons } from "@expo/vector-icons";
 
 export const WikiHome = () => {
 
@@ -18,15 +20,26 @@ export const WikiHome = () => {
         ListHeaderComponent={(
           <View style={ styles.header }>
             <Text style={ styles.title }>Wiki</Text>
+            <View>
             <TextInput
               style={ styles.input }
               value={ text }
               onChangeText={ setText }
               onSubmitEditing={ () => setSearch(text) }
-              placeholder="Buscar entidad"
+              placeholder="Buscar en Wiki"
+              placeholderTextColor={ colors.textid }
+              selectionColor={ colors.primary }
               autoCapitalize="none"
               returnKeyType="search"
             />
+            <Ionicons
+                name="search-outline"
+                size={ 22 }
+                color={ colors.primary }
+                style={ styles.searchIcon }
+                onPress={ () => setSearch(text) }
+              />
+          </View>
           </View>
         )}
         renderItem={ ({ item }) => <WikiCard wiki={ item } /> }
@@ -46,22 +59,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
+    backgroundColor: colors.background
   },
   header: {
     marginBottom: 10,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontSize: 38,
+    fontWeight: '800',
+    marginBottom: 12,
+    color: colors.text,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    paddingHorizontal: 12,
+    color: colors.text,
+    borderRadius: 20,
+    paddingHorizontal: 18,
     paddingVertical: 8,
-    fontSize: 16,
+    fontSize: 17,
+    backgroundColor: colors.card,
+  },
+  searchIcon: {
+    position: 'absolute',
+    right: 16,
+    top: 0,
+    bottom: 0,
+    textAlignVertical: 'center',
+    lineHeight: 42, 
   },
 });
