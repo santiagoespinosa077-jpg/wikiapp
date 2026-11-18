@@ -1,11 +1,15 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { DetailRow } from "../interfaces/wikiResponse";
-import { colors } from "../theme/appTheme";
+import { Colors } from "../theme/appTheme";
+import { useMemo } from "react";
+import { useTheme } from "../theme/ThemeContext";
 interface Props {
     rows: DetailRow[];
 }
 
 export const WikiInfo = ({ rows }: Props) => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     return (
         <FlatList
             data={rows}
@@ -22,8 +26,7 @@ export const WikiInfo = ({ rows }: Props) => {
         />
     );
 };
-
-const styles = StyleSheet.create({
+const createStyles = (colors: Colors) => StyleSheet.create({
     list: {
         paddingHorizontal: 18,
         marginBottom: 24,

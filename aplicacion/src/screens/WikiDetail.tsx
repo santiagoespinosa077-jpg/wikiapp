@@ -5,11 +5,16 @@ import { useWikiFull } from "../hooks/useWikiappFull";
 import { WikiInfo } from "../components/WikiInfo";
 import { formatClaimValue } from "../helpers/formatClaimValue";
 import { DetailRow } from "../interfaces/wikiResponse";
-import { colors } from "../theme/appTheme";
+import { Colors } from "../theme/appTheme";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../theme/ThemeContext";
+import { useMemo } from "react";
 interface Props extends StackScreenProps<WikiParams, "WikiDetail"> { }
 
 export const WikiDetail = ({ navigation, route }: Props) => {
+    const { colors } = useTheme();
+    const style = useMemo(() => createStyles(colors), [colors]);
+
     const data = route.params.NewWikiList;
     const { id, label, description, image } = data;
     const { isLoading, wikiDetail, labels } = useWikiFull(id);
@@ -47,7 +52,7 @@ export const WikiDetail = ({ navigation, route }: Props) => {
     );
 };
 
-const style = StyleSheet.create({
+const createStyles = (colors: Colors) => StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,

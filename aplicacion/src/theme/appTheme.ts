@@ -6,6 +6,7 @@ export const darkColors = {
   textid: '#9aa3c0',
   primary: '#3b6cff',
   link: '#5b8cff',
+  box: '0px 4px 8px rgba(0,0,0,0.25)'
 };
 
 export const lightColors = {
@@ -19,4 +20,4 @@ export const lightColors = {
   box: '0px 4px 8px rgba(0,0,0,0.25)'
 };
 
-export const colors = lightColors;
+export type Colors = typeof darkColors;

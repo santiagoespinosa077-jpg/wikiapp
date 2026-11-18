@@ -3,15 +3,19 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { NewWikiList } from "../interfaces/wikiResponse";
 import { WikiParams } from "../navigator/WikiNavigation";
-import { useState } from "react";
-import { colors } from "../theme/appTheme";
+import { useState,useMemo } from "react";
+import { Colors } from "../theme/appTheme";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../theme/ThemeContext";
 
 interface Props {
     wiki: NewWikiList;
 }
 
 export const WikiCard = ({ wiki }: Props) => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+
     const navigation = useNavigation<StackNavigationProp<WikiParams>>();
     const [imageFailed, setImageFailed] = useState(false);
 
@@ -49,7 +53,7 @@ export const WikiCard = ({ wiki }: Props) => {
         </TouchableOpacity>
     );
 };
-const styles = StyleSheet.create({
+const createStyles = (colors: Colors) => StyleSheet.create({
     card: {
         padding: 14,
         marginVertical: 8,
